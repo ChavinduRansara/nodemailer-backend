@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.status(200).json('Welcome, your app is working well');
 });
 
 app.post("/send", (req, res) => {
