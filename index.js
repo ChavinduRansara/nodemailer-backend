@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-const allowedOrigins = ['https://chavindu-ransara.vercel.app'];
+const allowedOrigins = [process.env.FRONT_END_URL, "http://localhost:5173"];
 
 const corsOptions = {
   origin: function (origin, callback) {
