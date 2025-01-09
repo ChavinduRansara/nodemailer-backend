@@ -6,7 +6,19 @@ require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+const allowedOrigins = ['https://chavindu-ransara.vercel.app/'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -23,7 +35,7 @@ app.get("/", (req, res) => {
   res.status(200).json('Welcome, your app is working well');
 });
 
-app.post("/send", (req, res) => {
+app.post("api/send", (req, res) => {
   const mailOptions = {
     from: req.body.email,
     to: process.env.EMAIL_TO,
