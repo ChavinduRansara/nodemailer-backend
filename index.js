@@ -18,7 +18,7 @@ const corsOptions = {
   },
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
