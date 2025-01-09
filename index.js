@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
   res.status(200).json('Welcome, your app is working well');
 });
 
-app.post("api/send", (req, res) => {
+app.post("/api/send", (req, res) => {
   const mailOptions = {
     from: req.body.email,
     to: process.env.EMAIL_TO,
